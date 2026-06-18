@@ -1,11 +1,5 @@
 import { useState } from "react";
-
-// 1. Fixed the type definition to include the optional status
-type Student = {
-  id: number;
-  name: string;
-  status?: string;
-};
+import type { Student } from "./types";
 
 export default function App() {
   const [students, setStudents] = useState<Student[]>([]);
@@ -28,7 +22,6 @@ export default function App() {
       const newStudent = {
         id: Date.now(),
         name: input.trim(),
-        status: "Present",
       };
       setStudents([...students, newStudent]);
       setInput("");
@@ -51,7 +44,13 @@ export default function App() {
       <div className="flex items-center justify-center p-6 bg-gray-100 min-h-screen">
         <div className="bg-white p-8 rounded-xl w-full max-w-md shadow-sm">
           <h1 className="text-xl font-bold mb-4 text-gray-800">Members</h1>
-          <div className="flex gap-2">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmitStudent();
+            }}
+            className="flex gap-2"
+          >
             <input
               type="text"
               value={input}
@@ -60,6 +59,7 @@ export default function App() {
               placeholder="Sponge Bob"
             />
             <button
+              type="submit"
               onClick={handleSubmitStudent}
               className={`px-5 py-2 rounded-lg text-white font-medium transition-colors ${
                 editingId === null
@@ -69,7 +69,7 @@ export default function App() {
             >
               {editingId === null ? "Add" : "Save"}
             </button>
-          </div>
+          </form>
           <div className="mt-6">
             <ul className="space-y-3">
               {students.map((student) => (
@@ -83,12 +83,14 @@ export default function App() {
 
                   <div className="flex gap-2">
                     <button
+                      type="button"
                       onClick={() => editStudent(student)}
                       className="text-sm px-3 py-1.5 rounded bg-amber-500 text-white hover:bg-amber-600 transition-colors"
                     >
                       Edit
                     </button>
                     <button
+                      type="button"
                       onClick={() => deleteStudent(student.id)}
                       className="text-sm px-3 py-1.5 rounded bg-red-500 text-white hover:bg-red-600 transition-colors"
                     >

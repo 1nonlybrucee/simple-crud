@@ -1,1 +1,1 @@
-##simple crud app with react, ts and tailwind
+## simple crud app with react, ts and tailwind
