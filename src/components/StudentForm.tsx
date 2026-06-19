@@ -17,7 +17,7 @@ export default function StudentForm({
         e.preventDefault();
         onSubmit();
       }}
-      className="flex gap-2"
+      className="flex flex-col sm:flex-row gap-3"
     >
       <input
         type="text"
