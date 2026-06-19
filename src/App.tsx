@@ -45,7 +45,7 @@ export default function App() {
     <>
       <div className="flex items-center justify-center p-6 bg-gray-100 min-h-screen">
         <div className="bg-white p-8 rounded-xl w-full max-w-md shadow-sm">
-          <h1 className="text-xl font-bold mb-4 text-gray-800">Members</h1>
+          <h1 className="text-xl font-bold mb-4 text-gray-800">Students</h1>
           <StudentForm
             input={input}
             setInput={setInput}

@@ -13,15 +13,20 @@ export default function StudentList({
   onDelete,
 }: StudentListProps) {
   return (
-    <ul className="space-y-3">
-      {students.map((student) => (
-        <StudentItem
-          key={student.id}
-          student={student}
-          onEdit={onEdit}
-          onDelete={onDelete}
-        ></StudentItem>
-      ))}
-    </ul>
+    <>
+      {students.length === 0 && (
+        <p className="mt-6 text-gray-500 text-center">No members yet.</p>
+      )}
+      <ul className="space-y-3">
+        {students.map((student) => (
+          <StudentItem
+            key={student.id}
+            student={student}
+            onEdit={onEdit}
+            onDelete={onDelete}
+          ></StudentItem>
+        ))}
+      </ul>
+    </>
   );
 }
